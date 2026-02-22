@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResolveX Submit Complaint</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="d-flex" id="wrapper">
+    <aside id="sidebar-wrapper" class="p-3">
+        <div class="brand-mark px-2 py-3">Resolve<span>X</span></div>
+        <nav class="list-group list-group-flush mt-2">
+            <a href="index.html" data-page="home" class="list-group-item list-group-item-action border-0 nav-link-item">Home</a>
+            <a href="submit.html" data-page="submit" class="list-group-item list-group-item-action border-0 nav-link-item">Submit</a>
+            <a href="tracking.html" data-page="tracking" class="list-group-item list-group-item-action border-0 nav-link-item">Tracking</a>
+            <a href="admin.html" data-page="admin" class="list-group-item list-group-item-action border-0 nav-link-item">Admin</a>
+            <a href="analytics.html" data-page="analytics" class="list-group-item list-group-item-action border-0 nav-link-item">Analytics</a>
+            <a href="feedback.html" data-page="feedback" class="list-group-item list-group-item-action border-0 nav-link-item">Feedback</a>
+            <a href="settings.html" data-page="settings" class="list-group-item list-group-item-action border-0 nav-link-item">Settings</a>
+        </nav>
+    </aside>
+
+    <main id="page-content-wrapper">
+        <nav class="navbar navbar-shell px-3 py-3">
+            <button class="btn btn-primary d-lg-none" id="menu-toggle"><i class="fas fa-bars"></i></button>
+            <div class="ms-auto d-flex align-items-center gap-3">
+                <span id="current-date" class="small text-muted d-none d-md-inline"></span>
+                <span class="fw-semibold" id="nav-user-name">Admin</span>
+                <button class="btn btn-outline-danger btn-sm" id="logout-link">Logout</button>
+            </div>
+        </nav>
+
+        <div class="container-fluid p-4">
+            <div class="page-head mb-4">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                    <div>
+                        <h3 class="mb-1"><i class="fas fa-file-circle-plus text-primary me-2"></i>Submit Complaint</h3>
+                        <p>Create a new complaint with complete details for faster, transparent resolution.</p>
+                    </div>
+                    <span class="soft-chip"><i class="fas fa-pen-to-square"></i> New Ticket</span>
+                </div>
+            </div>
+
+            <div class="card hero-banner p-4 mb-4">
+                <div class="row g-3 align-items-center">
+                    <div class="col-lg-8">
+                        <h3 class="mb-2 panel-title"><i class="fas fa-file-circle-plus text-primary me-2"></i>Complaint Information</h3>
+                        <p class="text-muted mb-2">Capture complaint details clearly so support teams can process requests quickly and transparently.</p>
+                        <div class="glass-strip px-3 py-2 d-inline-flex align-items-center gap-2">
+                            <i class="fas fa-circle-info text-primary"></i>
+                            <span class="small">Accurate details improve first-response quality.</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <img class="section-image float-media" src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=80" alt="Writing complaint details">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card p-4">
+                <form id="complaint-form" novalidate>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label"><i class="fas fa-hashtag me-1 text-primary"></i>Complaint ID</label>
+                            <input id="comp-id" class="form-control" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label"><i class="fas fa-calendar-day me-1 text-primary"></i>Date</label>
+                            <input id="comp-date" class="form-control" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label"><i class="fas fa-user me-1 text-primary"></i>Name</label>
+                            <input id="comp-name" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label"><i class="fas fa-envelope me-1 text-primary"></i>Email</label>
+                            <input id="comp-email" type="email" class="form-control" required>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label"><i class="fas fa-tags me-1 text-primary"></i>Category</label>
+                            <select id="comp-category" class="form-select" required>
+                                <option value="" selected disabled>Select category</option>
+                                <option value="Delivery">Delivery</option>
+                                <option value="Billing">Billing</option>
+                                <option value="Product">Product</option>
+                                <option value="Service">Service</option>
+                                <option value="Technical">Technical</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label"><i class="fas fa-pen-to-square me-1 text-primary"></i>Description</label>
+                            <textarea id="comp-description" class="form-control" rows="4" required></textarea>
+                        </div>
+                        <div class="col-md-12" id="ab-test-container"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index:1080;">
+    <div id="appToast" class="toast text-bg-dark border-0"><div class="d-flex"><div class="toast-body" id="toast-body"></div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button></div></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/common.js"></script>
+<script src="js/submit.js"></script>
+</body>
+</html>

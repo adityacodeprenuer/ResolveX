@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResolveX Analytics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="d-flex" id="wrapper">
+    <aside id="sidebar-wrapper" class="p-3">
+        <div class="brand-mark px-2 py-3">Resolve<span>X</span></div>
+        <nav class="list-group list-group-flush mt-2">
+            <a href="index.html" data-page="home" class="list-group-item list-group-item-action border-0 nav-link-item">Home</a>
+            <a href="submit.html" data-page="submit" class="list-group-item list-group-item-action border-0 nav-link-item">Submit</a>
+            <a href="tracking.html" data-page="tracking" class="list-group-item list-group-item-action border-0 nav-link-item">Tracking</a>
+            <a href="admin.html" data-page="admin" class="list-group-item list-group-item-action border-0 nav-link-item">Admin</a>
+            <a href="analytics.html" data-page="analytics" class="list-group-item list-group-item-action border-0 nav-link-item">Analytics</a>
+            <a href="feedback.html" data-page="feedback" class="list-group-item list-group-item-action border-0 nav-link-item">Feedback</a>
+            <a href="settings.html" data-page="settings" class="list-group-item list-group-item-action border-0 nav-link-item">Settings</a>
+        </nav>
+    </aside>
+
+    <main id="page-content-wrapper">
+        <nav class="navbar navbar-shell px-3 py-3">
+            <button class="btn btn-primary d-lg-none" id="menu-toggle"><i class="fas fa-bars"></i></button>
+            <div class="ms-auto d-flex align-items-center gap-3">
+                <span id="current-date" class="small text-muted d-none d-md-inline"></span>
+                <span class="fw-semibold" id="nav-user-name">Admin</span>
+                <button class="btn btn-outline-danger btn-sm" id="logout-link">Logout</button>
+            </div>
+        </nav>
+
+        <div class="container-fluid p-4">
+            <div class="page-head mb-4">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                    <div>
+                        <h3 class="mb-1"><i class="fas fa-chart-line text-primary me-2"></i>Analytics Dashboard</h3>
+                        <p>Track complaint distribution and customer experience outcomes with visual insights.</p>
+                    </div>
+                    <span class="soft-chip"><i class="fas fa-chart-pie"></i> Real-time Metrics</span>
+                </div>
+            </div>
+            <div class="row g-3 stats-grid mb-4">
+                <div class="col-md-4"><div class="stat-card"><div>Total Complaints</div><div id="kpi-total" class="stat-value">0</div></div></div>
+                <div class="col-md-4"><div class="stat-card"><div>Average Rating</div><div id="kpi-avg" class="stat-value">0</div></div></div>
+                <div class="col-md-4"><div class="stat-card"><div>Pending Cases</div><div id="kpi-pending" class="stat-value">0</div></div></div>
+            </div>
+
+            <div class="row g-4 mb-4">
+                <div class="col-lg-6"><div class="card p-3"><h5 class="panel-title">Status Distribution</h5><canvas id="statusChart"></canvas></div></div>
+                <div class="col-lg-6"><div class="card p-3"><h5 class="panel-title">Category Distribution</h5><canvas id="categoryChart"></canvas></div></div>
+            </div>
+
+            <div class="card p-4">
+                <h5 class="mb-3 panel-title">A/B Button Performance</h5>
+                <div class="row g-3 text-center">
+                    <div class="col-md-6"><div class="card-min p-3 rounded-3"><div class="text-muted">Version A</div><div id="ab-a" class="stat-value">0</div></div></div>
+                    <div class="col-md-6"><div class="card-min p-3 rounded-3"><div class="text-muted">Version B</div><div id="ab-b" class="stat-value">0</div></div></div>
+                    <div class="col-12"><div id="ab-winner" class="alert alert-info mb-0">No A/B interactions yet.</div></div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/common.js"></script>
+<script src="js/analytics.js"></script>
+</body>
+</html>

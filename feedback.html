@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResolveX Feedback</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="d-flex" id="wrapper">
+    <aside id="sidebar-wrapper" class="p-3">
+        <div class="brand-mark px-2 py-3">Resolve<span>X</span></div>
+        <nav class="list-group list-group-flush mt-2">
+            <a href="index.html" data-page="home" class="list-group-item list-group-item-action border-0 nav-link-item">Home</a>
+            <a href="submit.html" data-page="submit" class="list-group-item list-group-item-action border-0 nav-link-item">Submit</a>
+            <a href="tracking.html" data-page="tracking" class="list-group-item list-group-item-action border-0 nav-link-item">Tracking</a>
+            <a href="admin.html" data-page="admin" class="list-group-item list-group-item-action border-0 nav-link-item">Admin</a>
+            <a href="analytics.html" data-page="analytics" class="list-group-item list-group-item-action border-0 nav-link-item">Analytics</a>
+            <a href="feedback.html" data-page="feedback" class="list-group-item list-group-item-action border-0 nav-link-item">Feedback</a>
+            <a href="settings.html" data-page="settings" class="list-group-item list-group-item-action border-0 nav-link-item">Settings</a>
+        </nav>
+    </aside>
+
+    <main id="page-content-wrapper">
+        <nav class="navbar navbar-shell px-3 py-3">
+            <button class="btn btn-primary d-lg-none" id="menu-toggle"><i class="fas fa-bars"></i></button>
+            <div class="ms-auto d-flex align-items-center gap-3">
+                <span id="current-date" class="small text-muted d-none d-md-inline"></span>
+                <span class="fw-semibold" id="nav-user-name">Admin</span>
+                <button class="btn btn-outline-danger btn-sm" id="logout-link">Logout</button>
+            </div>
+        </nav>
+
+        <div class="container-fluid p-4">
+            <div class="page-head mb-4">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                    <div>
+                        <h3 class="mb-1"><i class="fas fa-comments text-primary me-2"></i>Feedback Center</h3>
+                        <p>Review post-resolution satisfaction trends and identify improvement opportunities.</p>
+                    </div>
+                    <span class="soft-chip"><i class="fas fa-star"></i> CX Signals</span>
+                </div>
+            </div>
+            <div class="hero-banner card p-4 mb-4">
+                <div class="row g-3 align-items-center">
+                    <div class="col-lg-8">
+                        <h3 class="mb-2 panel-title"><i class="fas fa-comments text-primary me-2"></i>Customer Feedback Insights</h3>
+                        <p class="text-muted mb-0">Monitor satisfaction after resolution and identify areas needing service improvement.</p>
+                    </div>
+                    <div class="col-lg-4">
+                        <img class="section-image" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=80" alt="Customer feedback session">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-3 stats-grid mb-4">
+                <div class="col-md-4"><div class="stat-card"><div>Resolved Cases</div><div id="sum-resolved" class="stat-value">0</div></div></div>
+                <div class="col-md-4"><div class="stat-card"><div>Ratings Collected</div><div id="sum-rated" class="stat-value">0</div></div></div>
+                <div class="col-md-4"><div class="stat-card"><div>Average Satisfaction</div><div id="sum-avg" class="stat-value">0</div></div></div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="card p-3">
+                        <h5><i class="fas fa-signal me-2 text-primary"></i>Rating Distribution</h5>
+                        <div id="rating-distribution" class="mt-3"></div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="card p-3">
+                        <h5 class="panel-title"><i class="fas fa-table-list me-2 text-primary"></i>Resolved Feedback Log</h5>
+                        <div class="table-responsive mt-2">
+                            <table class="table table-hover align-middle">
+                                <thead class="table-light"><tr><th>ID</th><th>Name</th><th>Category</th><th>Status</th><th>Rating</th></tr></thead>
+                                <tbody id="feedback-list"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/common.js"></script>
+<script src="js/feedback.js"></script>
+</body>
+</html>

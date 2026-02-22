@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResolveX Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="d-flex" id="wrapper">
+    <aside id="sidebar-wrapper" class="p-3">
+        <div class="brand-mark px-2 py-3">Resolve<span>X</span></div>
+        <nav class="list-group list-group-flush mt-2">
+            <a href="index.html" data-page="home" class="list-group-item list-group-item-action border-0 nav-link-item">Home</a>
+            <a href="submit.html" data-page="submit" class="list-group-item list-group-item-action border-0 nav-link-item">Submit</a>
+            <a href="tracking.html" data-page="tracking" class="list-group-item list-group-item-action border-0 nav-link-item">Tracking</a>
+            <a href="admin.html" data-page="admin" class="list-group-item list-group-item-action border-0 nav-link-item">Admin</a>
+            <a href="analytics.html" data-page="analytics" class="list-group-item list-group-item-action border-0 nav-link-item">Analytics</a>
+            <a href="feedback.html" data-page="feedback" class="list-group-item list-group-item-action border-0 nav-link-item">Feedback</a>
+            <a href="settings.html" data-page="settings" class="list-group-item list-group-item-action border-0 nav-link-item">Settings</a>
+        </nav>
+    </aside>
+
+    <main id="page-content-wrapper">
+        <nav class="navbar navbar-shell px-3 py-3">
+            <button class="btn btn-primary d-lg-none" id="menu-toggle"><i class="fas fa-bars"></i></button>
+            <div class="ms-auto d-flex align-items-center gap-3">
+                <span id="current-date" class="small text-muted d-none d-md-inline"></span>
+                <span class="fw-semibold" id="nav-user-name">Admin</span>
+                <button class="btn btn-outline-danger btn-sm" id="logout-link">Logout</button>
+            </div>
+        </nav>
+
+        <div class="container-fluid p-4">
+            <div class="page-head mb-4">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                    <div>
+                        <h3 class="mb-1"><i class="fas fa-sliders text-primary me-2"></i>Admin Control Panel</h3>
+                        <p>Filter, update, export, and manage complaint lifecycles from one place.</p>
+                    </div>
+                    <span class="soft-chip"><i class="fas fa-table-list"></i> Live Queue</span>
+                </div>
+            </div>
+
+            <div class="row g-3 stats-grid mb-4" id="stats-cards"></div>
+
+            <div class="card p-4">
+                <div class="d-flex flex-wrap gap-2 mb-3 toolbar-row">
+                    <input id="search-text" class="form-control form-control-sm" style="max-width:260px" placeholder="Search complaints">
+                    <select id="filter-status" class="form-select form-select-sm" style="max-width:180px"><option value="All">All Status</option><option>Submitted</option><option>In Review</option><option>In Progress</option><option>Resolved</option><option>Rejected</option></select>
+                    <select id="filter-category" class="form-select form-select-sm" style="max-width:180px"><option value="All">All Category</option><option>Delivery</option><option>Billing</option><option>Product</option><option>Service</option><option>Technical</option><option>Other</option></select>
+                    <select id="sort-date" class="form-select form-select-sm" style="max-width:180px"><option value="newest">Newest First</option><option value="oldest">Oldest First</option></select>
+                    <button id="export-btn" class="btn btn-outline-primary btn-sm"><i class="fas fa-file-csv me-1"></i>Export</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light"><tr><th>ID</th><th>Customer</th><th>Category</th><th>Date</th><th>Status</th><th>Rating</th><th>Action</th></tr></thead>
+                        <tbody id="admin-list"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index:1080;">
+    <div id="appToast" class="toast text-bg-dark border-0"><div class="d-flex"><div class="toast-body" id="toast-body"></div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button></div></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/common.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

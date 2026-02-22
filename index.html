@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResolveX Dashboard Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="d-flex" id="wrapper">
+    <aside id="sidebar-wrapper" class="p-3">
+        <div class="brand-mark px-2 py-3">Resolve<span>X</span></div>
+        <nav class="list-group list-group-flush mt-2">
+            <a href="index.html" data-page="home" class="list-group-item list-group-item-action border-0 nav-link-item">Home</a>
+            <a href="submit.html" data-page="submit" class="list-group-item list-group-item-action border-0 nav-link-item">Submit</a>
+            <a href="tracking.html" data-page="tracking" class="list-group-item list-group-item-action border-0 nav-link-item">Tracking</a>
+            <a href="admin.html" data-page="admin" class="list-group-item list-group-item-action border-0 nav-link-item">Admin</a>
+            <a href="analytics.html" data-page="analytics" class="list-group-item list-group-item-action border-0 nav-link-item">Analytics</a>
+            <a href="feedback.html" data-page="feedback" class="list-group-item list-group-item-action border-0 nav-link-item">Feedback</a>
+            <a href="settings.html" data-page="settings" class="list-group-item list-group-item-action border-0 nav-link-item">Settings</a>
+        </nav>
+    </aside>
+
+    <main id="page-content-wrapper">
+        <nav class="navbar navbar-shell px-3 py-3">
+            <button class="btn btn-primary d-lg-none" id="menu-toggle"><i class="fas fa-bars"></i></button>
+            <div class="ms-auto d-flex align-items-center gap-3">
+                <span id="current-date" class="small text-muted d-none d-md-inline"></span>
+                <span class="fw-semibold" id="nav-user-name">Admin</span>
+                <button class="btn btn-outline-danger btn-sm" id="logout-link">Logout</button>
+            </div>
+        </nav>
+
+        <div class="container-fluid p-4">
+            <div class="page-head mb-4">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                    <div>
+                        <h3 class="mb-1"><i class="fas fa-house text-primary me-2"></i>Welcome to Your Dashboard</h3>
+                        <p>Track complaint performance, monitor activity, and navigate quickly to every workflow.</p>
+                    </div>
+                    <span class="soft-chip"><i class="fas fa-gauge-high"></i> User Home</span>
+                </div>
+            </div>
+
+            <div class="row g-3 stats-grid mb-4">
+                <div class="col-md-3"><div class="stat-card"><div>Total Complaints</div><div id="kpi-total" class="stat-value">0</div></div></div>
+                <div class="col-md-3"><div class="stat-card"><div>Pending</div><div id="kpi-pending" class="stat-value">0</div></div></div>
+                <div class="col-md-2"><div class="stat-card"><div>Resolved</div><div id="kpi-resolved" class="stat-value">0</div></div></div>
+                <div class="col-md-2"><div class="stat-card"><div>Rejected</div><div id="kpi-rejected" class="stat-value">0</div></div></div>
+                <div class="col-md-2"><div class="stat-card"><div>Avg Rating</div><div id="kpi-rating" class="stat-value">0</div></div></div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="section-title mb-3">Quick Actions</h5>
+                    <div class="d-grid gap-2">
+                        <a class="quick-link" href="submit.html"><i class="fas fa-plus-circle me-2"></i>Create Complaint</a>
+                        <a class="quick-link" href="tracking.html"><i class="fas fa-list-check me-2"></i>Track Complaints</a>
+                        <a class="quick-link" href="admin.html"><i class="fas fa-sliders me-2"></i>Manage Queue</a>
+                        <a class="quick-link" href="analytics.html"><i class="fas fa-chart-column me-2"></i>View Analytics</a>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <h5 class="section-title mb-3">Recent Complaints</h5>
+                    <div class="card p-3">
+                        <div id="recent-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index:1080;">
+    <div id="appToast" class="toast text-bg-dark border-0"><div class="d-flex"><div class="toast-body" id="toast-body"></div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button></div></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/common.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>
