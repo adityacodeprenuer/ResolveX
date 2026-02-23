@@ -1,7 +1,7 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", () => {
-    ResolveXCore.setupShell("admin");
+document.addEventListener("DOMContentLoaded", async () => {
+    await ResolveXCore.setupShell("admin");
 
     const statsEl = document.getElementById("stats-cards");
     const tableEl = document.getElementById("admin-list");
@@ -53,8 +53,8 @@ document.addEventListener("DOMContentLoaded", () => {
         ResolveXCore.animateCounters(statsEl);
     };
 
-    const renderTable = () => {
-        const complaints = ResolveXCore.getComplaints();
+    const renderTable = async () => {
+        const complaints = await ResolveXCore.getComplaints();
         renderStats(complaints);
         const rows = applyFilters(complaints);
 
@@ -85,39 +85,39 @@ document.addEventListener("DOMContentLoaded", () => {
         el.addEventListener("change", renderTable);
     });
 
-    document.getElementById("export-btn").addEventListener("click", () => {
-        const complaints = ResolveXCore.getComplaints();
+    document.getElementById("export-btn").addEventListener("click", async () => {
+        const complaints = await ResolveXCore.getComplaints();
         ResolveXCore.downloadCsv(applyFilters(complaints), "admin_export");
-        ResolveXCore.showToast("CSV exported.");
+        await ResolveXCore.showToast("CSV exported.");
     });
 
-    tableEl.addEventListener("change", (event) => {
+    tableEl.addEventListener("change", async (event) => {
         const select = event.target.closest(".status-changer");
         if (!select) return;
-        const complaints = ResolveXCore.getComplaints();
+        const complaints = await ResolveXCore.getComplaints();
         const idx = complaints.findIndex((c) => c.id === select.dataset.id);
         if (idx < 0) return;
         complaints[idx].status = select.value;
-        ResolveXCore.saveComplaints(complaints);
-        const settings = ResolveXCore.getSettings();
+        await ResolveXCore.saveComplaints(complaints);
+        const settings = await ResolveXCore.getSettings();
         if (select.value === "Resolved" && settings.autoPromptFeedback) {
-            ResolveXCore.showToast("Marked resolved. Ask customer to submit a rating in Tracking.");
+            await ResolveXCore.showToast("Marked resolved. Ask customer to submit a rating in Tracking.");
         } else {
-            ResolveXCore.showToast(`Status updated to ${select.value}`);
+            await ResolveXCore.showToast(`Status updated to ${select.value}`);
         }
-        renderTable();
+        await renderTable();
     });
 
-    tableEl.addEventListener("click", (event) => {
+    tableEl.addEventListener("click", async (event) => {
         const del = event.target.closest(".delete-btn");
         if (!del) return;
         if (!confirm(`Delete complaint ${del.dataset.id}?`)) return;
 
-        const rows = ResolveXCore.getComplaints().filter((c) => c.id !== del.dataset.id);
-        ResolveXCore.saveComplaints(rows);
-        ResolveXCore.showToast("Complaint deleted.");
-        renderTable();
+        const rows = (await ResolveXCore.getComplaints()).filter((c) => c.id !== del.dataset.id);
+        await ResolveXCore.saveComplaints(rows);
+        await ResolveXCore.showToast("Complaint deleted.");
+        await renderTable();
     });
 
-    renderTable();
+    await renderTable();
 });

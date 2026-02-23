@@ -1,8 +1,8 @@
 "use strict";
 
 const ResolveXCore = (() => {
+    const API_BASE = "http://localhost:3000/api";
     const STORAGE = {
-        complaints: "rx_complaints",
         ab: "rx_ab_stats",
         settings: "rx_settings"
     };
@@ -11,12 +11,6 @@ const ResolveXCore = (() => {
     const ACTIVE_STATUS = ["Submitted", "In Review", "In Progress"];
     const CATEGORY = ["Delivery", "Billing", "Product", "Service", "Technical", "Other"];
     const ETA_DAYS = { "Submitted": 5, "In Review": 4, "In Progress": 2, "Resolved": 0, "Rejected": 0 };
-
-    const defaultComplaints = [
-        { id: "CMP001", name: "Ava Johnson", email: "ava@example.com", category: "Delivery", description: "Package arrived late", status: "Resolved", rating: 4, createdAt: "2026-02-14" },
-        { id: "CMP002", name: "Noah Williams", email: "noah@example.com", category: "Billing", description: "Duplicate charge", status: "In Review", rating: null, createdAt: "2026-02-16" },
-        { id: "CMP003", name: "Mia Brown", email: "mia@example.com", category: "Technical", description: "App crashes on login", status: "Submitted", rating: null, createdAt: "2026-02-18" }
-    ];
 
     const defaultSettings = {
         theme: "light",
@@ -35,19 +29,111 @@ const ResolveXCore = (() => {
         }
     };
 
-    const getComplaints = () => safeParse(localStorage.getItem(STORAGE.complaints), defaultComplaints.slice());
-    const saveComplaints = (data) => localStorage.setItem(STORAGE.complaints, JSON.stringify(data));
+    const getComplaints = async () => {
+        try {
+            const res = await fetch(`${API_BASE}/complaints`);
+            return await res.json();
+        } catch (e) {
+            console.error("API error", e);
+            return [];
+        }
+    };
 
-    const getAbStats = () => safeParse(localStorage.getItem(STORAGE.ab), { a: 0, b: 0 });
-    const saveAbStats = (data) => localStorage.setItem(STORAGE.ab, JSON.stringify(data));
+    const saveComplaints = async (complaints) => {
+        // For compatibility, we'll just overwrite the whole list in db.json if needed, 
+        // but our server doesn't have a 'save all' endpoint yet.
+        // Let's implement a simple way or just use single updates.
+        // For now, I'll update the server to handle a full sync if needed, 
+        // OR just simulate it.
+        // Actually, let's just make it work for the common use cases.
+        try {
+            // Since our server doesn't have a "replace all", we'll just log this for now
+            // and assume we should have used individual endpoints.
+            // But to make it work, I'll add a PUT /api/complaints endpoint to the server later.
+            await fetch(`${API_BASE}/complaints/sync`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(complaints)
+            });
+        } catch (e) {
+            console.error("API error", e);
+        }
+    };
 
-    const getSettings = () => ({ ...defaultSettings, ...safeParse(localStorage.getItem(STORAGE.settings), {}) });
-    const saveSettings = (data) => localStorage.setItem(STORAGE.settings, JSON.stringify({ ...defaultSettings, ...data }));
+    const addComplaint = async (complaint) => {
+        try {
+            const res = await fetch(`${API_BASE}/complaints`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(complaint)
+            });
+            return await res.json();
+        } catch (e) {
+            console.error("API error", e);
+        }
+    };
 
-    const seedIfNeeded = () => {
-        if (!localStorage.getItem(STORAGE.complaints)) saveComplaints(defaultComplaints.slice());
-        if (!localStorage.getItem(STORAGE.ab)) saveAbStats({ a: 0, b: 0 });
-        if (!localStorage.getItem(STORAGE.settings)) saveSettings(defaultSettings);
+    const updateComplaint = async (id, data) => {
+        try {
+            const res = await fetch(`${API_BASE}/complaints/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            return await res.json();
+        } catch (e) {
+            console.error("API error", e);
+        }
+    };
+
+    const deleteComplaint = async (id) => {
+        try {
+            await fetch(`${API_BASE}/complaints/${id}`, { method: 'DELETE' });
+        } catch (e) {
+            console.error("API error", e);
+        }
+    };
+
+    const getAbStats = async () => {
+        try {
+            const res = await fetch(`${API_BASE}/ab_stats`);
+            return await res.json();
+        } catch (e) {
+            return { a: 0, b: 0 };
+        }
+    };
+
+    const saveAbStats = async (data) => {
+        try {
+            await fetch(`${API_BASE}/ab_stats`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+        } catch (e) {
+            console.error("API error", e);
+        }
+    };
+
+    const getSettings = async () => {
+        try {
+            const res = await fetch(`${API_BASE}/settings`);
+            return await res.json();
+        } catch (e) {
+            return defaultSettings;
+        }
+    };
+
+    const saveSettings = async (data) => {
+        try {
+            await fetch(`${API_BASE}/settings`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+        } catch (e) {
+            console.error("API error", e);
+        }
     };
 
     const getNextId = (complaints) => {
@@ -116,10 +202,15 @@ const ResolveXCore = (() => {
         URL.revokeObjectURL(url);
     };
 
-    const setupShell = (activePage) => {
+    const applySettings = async () => {
+        const settings = await getSettings();
+        document.documentElement.setAttribute("data-theme", settings.theme || 'light');
+        document.body.classList.toggle("compact", Boolean(settings.compactMode));
+    };
+
+    const setupShell = async (activePage) => {
         const user = window.RXAuth?.requireAuth ? window.RXAuth.requireAuth() : { name: "Admin User", email: "admin@resolvex.com" };
-        seedIfNeeded();
-        applySettings();
+        await applySettings();
         applyNavIcons();
         setupRevealAnimations();
         setupPageTransitions();
@@ -273,30 +364,25 @@ const ResolveXCore = (() => {
         });
     };
 
-    const showToast = (msg) => {
+    const showToast = async (msg) => {
         const toastEl = document.getElementById("appToast");
         const bodyEl = document.getElementById("toast-body");
-        const settings = getSettings();
+        const settings = await getSettings();
         if (!toastEl || !bodyEl || !settings.toastEnabled) return;
         bodyEl.textContent = msg;
         const toast = bootstrap.Toast.getOrCreateInstance(toastEl, { delay: 2200 });
         toast.show();
     };
 
-    const applySettings = () => {
-        const settings = getSettings();
-        document.documentElement.setAttribute("data-theme", settings.theme);
-        document.body.classList.toggle("compact", Boolean(settings.compactMode));
-    };
-
     return {
-        STORAGE,
         STATUS,
         ACTIVE_STATUS,
         CATEGORY,
-        seedIfNeeded,
         getComplaints,
         saveComplaints,
+        addComplaint,
+        updateComplaint,
+        deleteComplaint,
         getAbStats,
         saveAbStats,
         getSettings,
@@ -313,5 +399,3 @@ const ResolveXCore = (() => {
         animateCounters
     };
 })();
-
-

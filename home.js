@@ -1,9 +1,9 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", () => {
-    ResolveXCore.setupShell("home");
+document.addEventListener("DOMContentLoaded", async () => {
+    await ResolveXCore.setupShell("home");
 
-    const complaints = ResolveXCore.getComplaints();
+    const complaints = await ResolveXCore.getComplaints();
     const resolved = complaints.filter((c) => c.status === "Resolved").length;
     const pending = complaints.filter((c) => ResolveXCore.ACTIVE_STATUS.includes(c.status)).length;
     const rejected = complaints.filter((c) => c.status === "Rejected").length;
