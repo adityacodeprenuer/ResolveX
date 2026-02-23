@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResolveX Home</title>
+  <link href="vendor/bootstrap/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #2d56d8;
+      --primary-soft: #eef3ff;
+      --accent: #1f8a70;
+      --text: #1a2640;
+      --muted: #60708f;
+      --border: #dbe5fb;
+      --surface: #ffffff;
+      --bg: #f4f7ff;
+      --radius: 16px;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(150, 177, 255, .22), transparent 36%),
+        radial-gradient(circle at 100% 0%, rgba(117, 210, 187, .14), transparent 28%),
+        var(--bg);
+    }
+
+    h1, h2, h3, h4, h5, h6, .brand {
+      font-family: "Plus Jakarta Sans", "Manrope", sans-serif;
+    }
+
+    .topbar {
+      background: rgba(255, 255, 255, 0.9);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(6px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .brand {
+      color: var(--primary);
+      font-size: 1.55rem;
+      font-weight: 800;
+      text-decoration: none;
+      letter-spacing: .25px;
+    }
+
+    .hero {
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: linear-gradient(135deg, #ffffff, #f1f5ff);
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(47, 83, 185, 0.12);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      border: 1px solid #d5e0ff;
+      background: #f2f6ff;
+      color: #3552aa;
+      padding: .43rem .78rem;
+      border-radius: 999px;
+      font-size: .83rem;
+      font-weight: 700;
+    }
+
+    .hero-title {
+      font-weight: 800;
+      line-height: 1.08;
+      margin: 0;
+      font-size: clamp(2rem, 4.7vw, 3.5rem);
+      letter-spacing: -0.02em;
+    }
+
+    .hero-sub {
+      color: var(--muted);
+      font-size: 1.04rem;
+      max-width: 58ch;
+    }
+
+    .email-wrap {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: .48rem;
+      display: flex;
+      gap: .55rem;
+      flex-wrap: wrap;
+    }
+
+    .email-wrap input {
+      border: none;
+      outline: none;
+      flex: 1 1 250px;
+      padding: .7rem .8rem;
+      font-size: .98rem;
+      color: var(--text);
+      background: transparent;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      min-height: 290px;
+      object-fit: cover;
+      border-left: 1px solid var(--border);
+    }
+
+    .metric {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 13px;
+      padding: .85rem .95rem;
+      height: 100%;
+    }
+
+    .metric small { color: var(--muted); font-weight: 600; }
+    .metric h5 { margin: .25rem 0 0; font-weight: 800; }
+
+    .section-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 1rem;
+      height: 100%;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .section-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 28px rgba(32, 63, 160, 0.12);
+      border-color: #cdd9fb;
+      color: var(--primary);
+    }
+
+    .section-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary-soft);
+      color: var(--primary);
+      margin-bottom: .75rem;
+      font-size: 1.05rem;
+    }
+
+    .feature {
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 1rem;
+      background: #fff;
+      height: 100%;
+    }
+
+    .feature i { color: var(--accent); margin-right: .45rem; }
+    .muted { color: var(--muted); }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp .55s ease forwards;
+    }
+
+    .fade-up.d2 { animation-delay: .08s; }
+    .fade-up.d3 { animation-delay: .16s; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 991px) {
+      .hero-image { border-left: none; border-top: 1px solid var(--border); }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container py-3 d-flex align-items-center justify-content-between">
+      <a href="landing.html" class="brand">ResolveX</a>
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-secondary btn-sm"><i class="fas fa-language me-1"></i>English</button>
+        <a class="btn btn-primary btn-sm" href="login.html">Sign In</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container py-4 py-lg-5">
+    <section class="hero mb-4 fade-up">
+      <div class="row g-0 align-items-stretch">
+        <div class="col-lg-7 p-4 p-lg-5">
+          <span class="hero-badge mb-3"><i class="fas fa-circle-check"></i> Professional Complaint Management Platform</span>
+          <h1 class="hero-title mb-3">Manage complaints clearly,<br/>quickly, and professionally</h1>
+          <p class="hero-sub mb-4">Use one connected workspace for submission, tracking, admin actions, analytics, and customer feedback with a streamlined user experience.</p>
+
+          <div class="email-wrap mb-3">
+            <input type="email" placeholder="Enter your work email" />
+            <a class="btn btn-primary" href="login.html">Get Started <i class="fas fa-arrow-right ms-1"></i></a>
+          </div>
+
+          <div class="row g-2">
+            <div class="col-sm-4"><div class="metric"><small>Response SLA</small><h5>&lt; 24 hrs</h5></div></div>
+            <div class="col-sm-4"><div class="metric"><small>Lifecycle</small><h5>5 Stages</h5></div></div>
+            <div class="col-sm-4"><div class="metric"><small>Insights</small><h5>Real-time</h5></div></div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <img class="hero-image" src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80" alt="Professional dashboard workspace" />
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-4 fade-up d2">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="mb-0">Quick Navigation</h4>
+        <span class="small muted">Go directly to any module</span>
+      </div>
+      <div class="row g-3">
+        <div class="col-md-6 col-lg-3"><a class="section-card" href="index.html"><span class="section-icon"><i class="fas fa-house"></i></span><h6>Dashboard</h6><p class="small muted mb-0">Overview and recent activity</p></a></div>
+        <div class="col-md-6 col-lg-3"><a class="section-card" href="submit.html"><span class="section-icon"><i class="fas fa-plus-circle"></i></span><h6>Submit</h6><p class="small muted mb-0">Create new complaint tickets</p></a></div>
+        <div class="col-md-6 col-lg-3"><a class="section-card" href="product.html"><span class="section-icon"><i class="fas fa-box-open"></i></span><h6>Product</h6><p class="small muted mb-0">Browse service categories</p></a></div>
+        <div class="col-md-6 col-lg-3"><a class="section-card" href="tracking.html"><span class="section-icon"><i class="fas fa-list-check"></i></span><h6>Tracking</h6><p class="small muted mb-0">Check status and timelines</p></a></div>
+        <div class="col-md-6 col-lg-3"><a class="section-card" href="admin.html"><span class="section-icon"><i class="fas fa-sliders"></i></span><h6>Admin</h6><p class="small muted mb-0">Update status and manage queue</p></a></div>
+        <div class="col-md-6 col-lg-3"><a class="section-card" href="analytics.html"><span class="section-icon"><i class="fas fa-chart-pie"></i></span><h6>Analytics</h6><p class="small muted mb-0">Visual performance insights</p></a></div>
+        <div class="col-md-6 col-lg-3"><a class="section-card" href="feedback.html"><span class="section-icon"><i class="fas fa-star"></i></span><h6>Feedback</h6><p class="small muted mb-0">Resolution satisfaction records</p></a></div>
+        <div class="col-md-6 col-lg-3"><a class="section-card" href="settings.html"><span class="section-icon"><i class="fas fa-gear"></i></span><h6>Settings</h6><p class="small muted mb-0">Theme and app preferences</p></a></div>
+        <div class="col-md-6 col-lg-3"><a class="section-card" href="login.html"><span class="section-icon"><i class="fas fa-right-to-bracket"></i></span><h6>Login</h6><p class="small muted mb-0">Secure sign in to workspace</p></a></div>
+      </div>
+    </section>
+
+    <section class="fade-up d3">
+      <h4 class="mb-3">Why teams choose ResolveX</h4>
+      <div class="row g-3">
+        <div class="col-md-4"><div class="feature"><h6><i class="fas fa-bolt"></i>Fast complaint lifecycle</h6><p class="small muted mb-0">Move tickets through stages quickly with a structured process.</p></div></div>
+        <div class="col-md-4"><div class="feature"><h6><i class="fas fa-chart-line"></i>Data-driven decisions</h6><p class="small muted mb-0">Track trends, bottlenecks, and outcomes with visual analytics.</p></div></div>
+        <div class="col-md-4"><div class="feature"><h6><i class="fas fa-shield-halved"></i>Reliable admin workflow</h6><p class="small muted mb-0">Manage updates, export data, and capture feedback in one place.</p></div></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    sessionStorage.setItem("rx_landing_seen", "1");
+  </script>
+</body>
+</html>
+
+

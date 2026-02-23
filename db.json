@@ -1,14 +1,44 @@
 {
   "complaints": [
-    { "id": "CMP001", "name": "Ava Johnson", "email": "ava@example.com", "category": "Delivery", "description": "Package arrived late", "status": "Resolved", "rating": 4, "createdAt": "2026-02-14" },
-    { "id": "CMP002", "name": "Noah Williams", "email": "noah@example.com", "category": "Billing", "description": "Duplicate charge", "status": "In Review", "rating": null, "createdAt": "2026-02-16" },
-    { "id": "CMP003", "name": "Mia Brown", "email": "mia@example.com", "category": "Technical", "description": "App crashes on login", "status": "Submitted", "rating": null, "createdAt": "2026-02-18" }
+    {
+      "id": "CMP001",
+      "name": "Ava Johnson",
+      "email": "ava@example.com",
+      "category": "Delivery",
+      "description": "Package arrived late",
+      "status": "Resolved",
+      "rating": 4,
+      "createdAt": "2026-02-14"
+    },
+    {
+      "id": "CMP002",
+      "name": "Noah Williams",
+      "email": "noah@example.com",
+      "category": "Billing",
+      "description": "Duplicate charge",
+      "status": "In Review",
+      "rating": null,
+      "createdAt": "2026-02-16"
+    },
+    {
+      "id": "CMP003",
+      "name": "Mia Brown",
+      "email": "mia@example.com",
+      "category": "Technical",
+      "description": "App crashes on login",
+      "status": "Submitted",
+      "rating": null,
+      "createdAt": "2026-02-18"
+    }
   ],
+  "ab": {
+    "a": 0,
+    "b": 0
+  },
   "settings": {
     "theme": "light",
     "compactMode": false,
     "toastEnabled": true,
     "autoPromptFeedback": true
-  },
-  "ab_stats": { "a": 0, "b": 0 }
+  }
 }

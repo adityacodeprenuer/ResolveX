@@ -542,3 +542,141 @@ thead.table-light td {
         box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.35);
     }
 }
+
+/* Visual polish overrides */
+:root {
+    --shadow-soft: 0 14px 34px rgba(15, 34, 78, 0.08);
+    --shadow-strong: 0 22px 44px rgba(15, 34, 78, 0.14);
+}
+
+body {
+    background:
+        radial-gradient(circle at 8% 4%, rgba(120, 162, 255, 0.16), transparent 30%),
+        radial-gradient(circle at 94% 2%, rgba(96, 201, 171, 0.11), transparent 28%),
+        linear-gradient(180deg, color-mix(in srgb, var(--bg) 88%, #ffffff 12%), var(--bg));
+}
+
+#sidebar-wrapper {
+    background:
+        linear-gradient(180deg, color-mix(in srgb, var(--surface) 92%, var(--primary-soft) 8%), var(--surface));
+    box-shadow: 8px 0 28px rgba(24, 42, 86, 0.06);
+}
+
+#sidebar-wrapper::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--primary) 70%, #7ac9b3), transparent);
+    opacity: 0.65;
+}
+
+.navbar-shell {
+    background: color-mix(in srgb, var(--surface) 94%, #f4f8ff 6%);
+    backdrop-filter: blur(4px);
+}
+
+.nav-link-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link-item::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 0;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--primary) 14%, transparent), transparent);
+    transition: width .25s ease;
+}
+
+.nav-link-item:hover::before,
+.nav-link-item.active::before {
+    width: 100%;
+}
+
+.nav-link-item.active {
+    box-shadow: 0 10px 20px rgba(45, 86, 216, 0.26);
+}
+
+.card {
+    box-shadow: var(--shadow-soft);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-strong);
+}
+
+.stats-grid .stat-card {
+    border-radius: 14px;
+    background:
+        linear-gradient(160deg, color-mix(in srgb, var(--surface) 94%, #f5f8ff 6%), var(--surface));
+}
+
+.page-head {
+    position: relative;
+    overflow: hidden;
+}
+
+.page-head::after {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    right: -70px;
+    top: -90px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(45, 86, 216, 0.16), rgba(45, 86, 216, 0));
+    pointer-events: none;
+}
+
+.quick-link {
+    background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 92%, #f3f7ff 8%), var(--surface));
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 92%, #5c88ff), color-mix(in srgb, var(--primary) 86%, #2c4ebf));
+    border-color: color-mix(in srgb, var(--primary) 92%, #284ab8);
+}
+
+.btn-primary:hover {
+    filter: saturate(1.05) brightness(1.02);
+}
+
+.section-image {
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.card:hover .section-image {
+    transform: scale(1.03);
+    box-shadow: 0 10px 24px rgba(20, 39, 80, 0.15);
+}
+
+.table tbody tr:hover {
+    background: color-mix(in srgb, var(--primary-soft) 40%, var(--surface) 60%);
+}
+
+.login-body {
+    background:
+        radial-gradient(circle at 18% 12%, rgba(113, 155, 255, 0.16), transparent 28%),
+        radial-gradient(circle at 86% 4%, rgba(72, 189, 153, 0.12), transparent 22%),
+        linear-gradient(160deg, #eef3ff, #fbfdff 65%);
+}
+
+.login-card {
+    box-shadow: 0 20px 44px rgba(21, 41, 88, 0.14);
+}
+
+.page-transition-overlay {
+    background:
+        radial-gradient(circle at 30% 20%, rgba(45, 86, 216, 0.18), rgba(45, 86, 216, 0)),
+        radial-gradient(circle at 78% 72%, rgba(31, 138, 112, 0.14), rgba(31, 138, 112, 0));
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}

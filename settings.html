@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ResolveX Settings</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -15,7 +15,8 @@
         <div class="brand-mark px-2 py-3">Resolve<span>X</span></div>
         <nav class="list-group list-group-flush mt-2">
             <a href="index.html" data-page="home" class="list-group-item list-group-item-action border-0 nav-link-item">Home</a>
-            <a href="submit.html" data-page="submit" class="list-group-item list-group-item-action border-0 nav-link-item">Submit</a>            <a href="product.html" data-page="product" class="list-group-item list-group-item-action border-0 nav-link-item">Product</a>
+            <a href="submit.html" data-page="submit" class="list-group-item list-group-item-action border-0 nav-link-item">Submit</a>
+            <a href="product.html" data-page="product" class="list-group-item list-group-item-action border-0 nav-link-item">Product</a>
             <a href="tracking.html" data-page="tracking" class="list-group-item list-group-item-action border-0 nav-link-item">Tracking</a>
             <a href="admin.html" data-page="admin" class="list-group-item list-group-item-action border-0 nav-link-item">Admin</a>
             <a href="analytics.html" data-page="analytics" class="list-group-item list-group-item-action border-0 nav-link-item">Analytics</a>
@@ -78,6 +79,18 @@
                         <h4 class="mb-3 panel-title">Data Management</h4>
                         <p class="text-muted">Use this only when you want to clear all complaint records and A/B stats.</p>
                         <button id="clear-all-data" class="btn btn-outline-danger"><i class="fas fa-trash me-1"></i>Clear All Data</button>
+<div class="d-flex gap-2 mt-2">
+    <button id="export-json" class="btn btn-outline-secondary btn-sm"><i class="fas fa-file-export me-1"></i>Export JSON</button>
+    <label class="btn btn-outline-secondary btn-sm mb-0" for="import-json"><i class="fas fa-file-import me-1"></i>Import JSON</label>
+    <input id="import-json" type="file" accept="application/json" hidden>
+</div>
+                                            <hr>
+                        <h5 class="mb-2 panel-title">Backend Sync</h5>
+                        <p class="mb-2">Server status: <span id="backend-status" class="text-muted fw-semibold">Checking...</span></p>
+                        <div class="d-flex gap-2">
+                            <button id="pull-backend" class="btn btn-outline-primary btn-sm"><i class="fas fa-download me-1"></i>Pull</button>
+                            <button id="push-backend" class="btn btn-outline-success btn-sm"><i class="fas fa-upload me-1"></i>Push</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -89,9 +102,17 @@
     <div id="appToast" class="toast text-bg-dark border-0"><div class="d-flex"><div class="toast-body" id="toast-body"></div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button></div></div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="vendor/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="auth.js"></script>
+<script src="api.js"></script>
 <script src="common.js"></script>
 <script src="settings.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+

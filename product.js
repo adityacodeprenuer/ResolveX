@@ -87,6 +87,45 @@ document.addEventListener("DOMContentLoaded", () => {
             description: "Bluetooth tracker tag for keys, bags, and wallets with crowd-find support.",
             highlights: ["120m range", "Replaceable battery", "Ring alert"],
             issues: ["App pairing", "Battery alert bug", "General inquiry"]
+        },
+        {
+            id: "PD007",
+            name: "GaN Fast Charger 65W",
+            category: "Service",
+            serviceRating: 4.7,
+            slaDays: 2,
+            stock: "In Stock",
+            priceRange: "$29-$39",
+            image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=900&q=80",
+            description: "Compact multi-port GaN charger for phones, tablets, and laptops.",
+            highlights: ["65W output", "Dual USB-C + USB-A", "Overheat protection"],
+            issues: ["Power fluctuation", "Adapter heating", "Cable compatibility"]
+        },
+        {
+            id: "PD008",
+            name: "Gaming Mouse X5",
+            category: "Technical",
+            serviceRating: 4.4,
+            slaDays: 3,
+            stock: "In Stock",
+            priceRange: "$34-$59",
+            image: "https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=900&q=80",
+            description: "Ergonomic gaming mouse with programmable keys and adjustable DPI.",
+            highlights: ["Up to 16000 DPI", "RGB zones", "Macro key support"],
+            issues: ["Software profile bug", "Scroll wheel jump", "Button double-click"]
+        },
+        {
+            id: "PD009",
+            name: "Laptop Sleeve Pro 14\"",
+            category: "Delivery",
+            serviceRating: 4.2,
+            slaDays: 4,
+            stock: "In Stock",
+            priceRange: "$19-$29",
+            image: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=900&q=80",
+            description: "Water-resistant premium sleeve with accessory pocket and soft lining.",
+            highlights: ["Shock-absorb layer", "Zipper pocket", "Water-resistant exterior"],
+            issues: ["Late delivery", "Size mismatch", "Packaging damage"]
         }
     ];
 
@@ -255,3 +294,4 @@ document.addEventListener("DOMContentLoaded", () => {
     renderFeatured();
     renderProducts();
 });
+
