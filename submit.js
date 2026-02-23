@@ -7,11 +7,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const idEl = document.getElementById("comp-id");
     const dateEl = document.getElementById("comp-date");
     const abWrap = document.getElementById("ab-test-container");
+    const categoryEl = document.getElementById("comp-category");
 
     const fillMeta = () => {
         const complaints = ResolveXCore.getComplaints();
         idEl.value = ResolveXCore.getNextId(complaints);
         dateEl.value = new Date().toISOString().slice(0, 10);
+    };
+
+    const applyProductPrefill = () => {
+        const prefillCategory = sessionStorage.getItem("rx_prefill_category");
+        if (!prefillCategory) return;
+        const exists = [...categoryEl.options].some((opt) => opt.value === prefillCategory);
+        if (!exists) return;
+        categoryEl.value = prefillCategory;
+        sessionStorage.removeItem("rx_prefill_category");
+        ResolveXCore.showToast(`Category prefilled: ${prefillCategory}`);
     };
 
     const renderAbButton = () => {
@@ -23,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fillMeta();
     renderAbButton();
+    applyProductPrefill();
 
     form.addEventListener("click", (event) => {
         const btn = event.target.closest(".ab-btn");
@@ -48,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id: idEl.value,
             name: document.getElementById("comp-name").value.trim(),
             email: document.getElementById("comp-email").value.trim(),
-            category: document.getElementById("comp-category").value,
+            category: categoryEl.value,
             description: document.getElementById("comp-description").value.trim(),
             status: "Submitted",
             rating: null,

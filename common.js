@@ -1,4 +1,4 @@
-﻿"use strict";
+"use strict";
 
 const ResolveXCore = (() => {
     const STORAGE = {
@@ -167,7 +167,8 @@ const ResolveXCore = (() => {
     const applyNavIcons = () => {
         const iconMap = {
             home: "fa-house",
-            submit: "fa-plus-circle",`r`n            product: "fa-box-open",
+            submit: "fa-plus-circle",
+            product: "fa-box-open",
             tracking: "fa-list-check",
             admin: "fa-sliders",
             analytics: "fa-chart-pie",
@@ -312,3 +313,5 @@ const ResolveXCore = (() => {
         animateCounters
     };
 })();
+
+
